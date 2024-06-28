@@ -1,4 +1,4 @@
-// src/utils/honeycombGrid.tsx
+// src/utils/honeycombGrid.ts
 import { drawHexagon, isPointInHexagon } from './hexagonUtils';
 
 interface Hexagon {
@@ -8,6 +8,9 @@ interface Hexagon {
   scale?: number;
   backgroundImage?: HTMLImageElement;
   styles?: any;
+  initialYOffset: number;
+  direction: number;
+  animate?: boolean;
 }
 
 export async function drawHoneycombGrid(onHexClick: (index: number) => void, imageSrc: string) {
@@ -33,13 +36,13 @@ export async function drawHoneycombGrid(onHexClick: (index: number) => void, ima
 
   // Define hexagons with positions, colors, and styles
   const hexagons: Hexagon[] = [
-    { xOffset: -hexWidth * 0.75, yOffset: -hexHeight * 1.5, color: 'red', styles: {lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(255, 0, 0, 0.5)'} },
-    { xOffset: hexWidth * 0.75, yOffset: -hexHeight * 1.5, color: 'green', styles: {lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(0, 255, 0, 0.5)'} },
-    { xOffset: -hexWidth * 1.5, yOffset: 0, color: 'blue', styles: {lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(0, 0, 255, 0.5)'} },
-    { xOffset: hexWidth * 1.5, yOffset: 0, color: 'yellow', styles: {lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(255, 255, 0, 0.5)'} },
-    { xOffset: 0, yOffset: 0, color: 'purple', scale: 1.4, backgroundImage: image, styles: {lineWidth: 2, strokeStyle: 'black'} },
-    { xOffset: -hexWidth * 0.75, yOffset: hexHeight * 1.5, color: 'cyan', styles: {lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(0, 255, 255, 0.5)'} },
-    { xOffset: hexWidth * 0.75, yOffset: hexHeight * 1.5, color: 'magenta', styles: {lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(255, 0, 255, 0.5)'} },
+    { xOffset: -hexWidth * 0.75, yOffset: -hexHeight * 1.5, color: 'red', styles: { lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(255, 0, 0, 0.5)', transform: true }, initialYOffset: -hexHeight * 1.5, direction: 1, animate: true },
+    { xOffset: hexWidth * 0.75, yOffset: -hexHeight * 1.5, color: 'green', styles: { lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(0, 255, 0, 0.5)', transform: true }, initialYOffset: -hexHeight * 1.5, direction: 1, animate: true },
+    { xOffset: -hexWidth * 1.5, yOffset: 0, color: 'blue', styles: { lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(0, 0, 255, 0.5)', transform: true }, initialYOffset: 0, direction: 1, animate: true },
+    { xOffset: hexWidth * 1.5, yOffset: 0, color: 'yellow', styles: { lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(255, 255, 0, 0.5)', transform: true }, initialYOffset: 0, direction: 1, animate: true },
+    { xOffset: 0, yOffset: 0, color: 'purple', scale: 1.4, backgroundImage: image, styles: { lineWidth: 2, strokeStyle: 'black', transform: false }, initialYOffset: 0, direction: 1, animate: false },
+    { xOffset: -hexWidth * 0.75, yOffset: hexHeight * 1.5, color: 'cyan', styles: { lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(0, 255, 255, 0.5)', transform: true }, initialYOffset: hexHeight * 1.5, direction: 1, animate: true },
+    { xOffset: hexWidth * 0.75, yOffset: hexHeight * 1.5, color: 'magenta', styles: { lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(255, 0, 255, 0.5)', transform: true }, initialYOffset: hexHeight * 1.5, direction: 1, animate: true },
   ];
 
   const hexagonsWithAbsoluteCoords = hexagons.map(hex => ({
@@ -49,13 +52,37 @@ export async function drawHoneycombGrid(onHexClick: (index: number) => void, ima
     radius: hexRadius * (hex.scale || 1)
   }));
 
-  image.onload = () => {
+  function animate() {
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
     const pattern = ctx.createPattern(image, 'repeat');
-    // Drawing hexagons
     hexagonsWithAbsoluteCoords.forEach((hex, index) => {
+      // Update the position only if animation is enabled
+      if (hex.animate) {
+        if (hex.direction === 1) {
+          hex.yOffset += 0.03; // Speed of moving up
+        } else {
+          hex.yOffset -= 0.03; // Speed of moving down
+        }
+
+        // Check if the hexagon has moved to a certain distance
+        if (hex.yOffset > hex.initialYOffset + 4) {
+          hex.direction = -1;
+        } else if (hex.yOffset < hex.initialYOffset - 3) {
+          hex.direction = 1;
+        }
+      }
+
+      hex.y = centerY + hex.yOffset;
       const hexPattern = hex.backgroundImage ? pattern : null;
       drawHexagon(ctx, hex.x, hex.y, hexRadius, hex.color, hex.scale, hexPattern, hex.styles);
     });
+
+    requestAnimationFrame(animate);
+  }
+
+  image.onload = () => {
+    animate();
   };
 
   canvas.onclick = (event: MouseEvent) => {
