@@ -53,22 +53,26 @@ export async function drawHoneycombGrid(onHexClick: (index: number) => void, ima
   }));
 
   function animate() {
+    if (!ctx) return; // Ensure ctx is not null
+    
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
     const pattern = ctx.createPattern(image, 'repeat');
+    if (!pattern) return; // Ensure pattern is not null or undefined
+    
     hexagonsWithAbsoluteCoords.forEach((hex, index) => {
       // Update the position only if animation is enabled
       if (hex.animate) {
         if (hex.direction === 1) {
-          hex.yOffset += 0.03; // Speed of moving up
+          hex.yOffset += 0.5; // Speed of moving up
         } else {
-          hex.yOffset -= 0.03; // Speed of moving down
+          hex.yOffset -= 0.5; // Speed of moving down
         }
 
         // Check if the hexagon has moved to a certain distance
-        if (hex.yOffset > hex.initialYOffset + 4) {
+        if (hex.yOffset > hex.initialYOffset + 20) {
           hex.direction = -1;
-        } else if (hex.yOffset < hex.initialYOffset - 3) {
+        } else if (hex.yOffset < hex.initialYOffset - 20) {
           hex.direction = 1;
         }
       }
@@ -92,7 +96,7 @@ export async function drawHoneycombGrid(onHexClick: (index: number) => void, ima
 
     hexagonsWithAbsoluteCoords.forEach((hex, index) => {
       if (isPointInHexagon(canvasX, canvasY, hex.x, hex.y, hex.radius)) {
-        onHexClick(index);
+        onHexClick(index); // Pass index of clicked hexagon
       }
     });
   };
