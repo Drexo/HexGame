@@ -35,8 +35,17 @@ const App: React.FC = () => {
     const resizeCanvas = () => {
       const canvas = document.getElementById("hexGrid") as HTMLCanvasElement;
       if (!canvas) return;
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      
+      const ctx = canvas.getContext("2d");
+      if (ctx) {
+        ctx.scale(dpr, dpr);
+      }
 
       drawHoneycombGrid((index) => {
         console.log(`Hexagon clicked: ${index}`);
