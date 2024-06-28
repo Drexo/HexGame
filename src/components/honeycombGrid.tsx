@@ -64,15 +64,15 @@ export async function drawHoneycombGrid(onHexClick: (index: number) => void, ima
       // Update the position only if animation is enabled
       if (hex.animate) {
         if (hex.direction === 1) {
-          hex.yOffset += 0.5; // Speed of moving up
+          hex.yOffset += 0.03; // Speed of moving up
         } else {
-          hex.yOffset -= 0.5; // Speed of moving down
+          hex.yOffset -= 0.03; // Speed of moving down
         }
 
         // Check if the hexagon has moved to a certain distance
-        if (hex.yOffset > hex.initialYOffset + 20) {
+        if (hex.yOffset > hex.initialYOffset + 4) {
           hex.direction = -1;
-        } else if (hex.yOffset < hex.initialYOffset - 20) {
+        } else if (hex.yOffset < hex.initialYOffset - 3) {
           hex.direction = 1;
         }
       }
