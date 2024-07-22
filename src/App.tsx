@@ -73,7 +73,7 @@ const App: React.FC = () => {
                 </div>
                 <div className="row middle-row">
                     <div className="honeycomb-cell"></div>
-                    <div className="honeycomb-cell"></div>
+                    <div className="honeycomb-cell honeycomb-cell--main"></div>
                     <div className="honeycomb-cell"></div>
                 </div>
                 <div className="row bottom-row">

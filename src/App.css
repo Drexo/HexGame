@@ -30,13 +30,25 @@ canvas {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
+  align-items: center;
+  gap: 20px;
+}
+
+.bottom-row,
+.top-row {
+  gap: 40px;
 }
 
 .honeycomb-cell {
   width: 90px;
   height: 80px; /* Adjusted height to get a 1:√3 aspect ratio */
+  transform: rotate(90deg);
   background-color: #ffcc00;
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   margin: 10px 0;
+}
+
+.honeycomb-cell--main {
+  width: 120px;
+  height: 110px; /* Adjusted height to get a 1:√3 aspect ratio */
 }
