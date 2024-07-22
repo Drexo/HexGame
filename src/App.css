@@ -17,3 +17,26 @@ canvas {
   width: 100%;
   height: 100%;
 }
+
+.honeycomb {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.honeycomb-cell {
+  width: 100px;
+  height: 90px; /* Adjusted height to get a 1:√3 aspect ratio */
+  background-color: #ffcc00;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  margin: 10px 0;
+}

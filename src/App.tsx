@@ -66,7 +66,21 @@ const App: React.FC = () => {
             <TonConnectButton />
           </FlexBoxRow>
           <FlexBoxRow>
-            <canvas id="hexGrid"></canvas>
+            <div className="honeycomb">
+                <div className="row top-row">
+                    <div className="honeycomb-cell"></div>
+                    <div className="honeycomb-cell"></div>
+                </div>
+                <div className="row middle-row">
+                    <div className="honeycomb-cell"></div>
+                    <div className="honeycomb-cell"></div>
+                    <div className="honeycomb-cell"></div>
+                </div>
+                <div className="row bottom-row">
+                    <div className="honeycomb-cell"></div>
+                    <div className="honeycomb-cell"></div>
+                </div>
+            </div>
           </FlexBoxRow>
           <Counter />
         </FlexBoxCol>

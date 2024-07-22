@@ -36,13 +36,13 @@ export async function drawHoneycombGrid(onHexClick: (index: number) => void, ima
 
   // Define hexagons with positions, colors, and styles
   const hexagons: Hexagon[] = [
-    { xOffset: -hexWidth * 0.75, yOffset: -hexHeight * 1.5, color: 'red', styles: { lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(255, 0, 0, 0.5)', transform: true }, initialYOffset: -hexHeight * 1.5, direction: 1, animate: true },
-    { xOffset: hexWidth * 0.75, yOffset: -hexHeight * 1.5, color: 'green', styles: { lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(0, 255, 0, 0.5)', transform: true }, initialYOffset: -hexHeight * 1.5, direction: 1, animate: true },
-    { xOffset: -hexWidth * 1.5, yOffset: 0, color: 'blue', styles: { lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(0, 0, 255, 0.5)', transform: true }, initialYOffset: 0, direction: 1, animate: true },
-    { xOffset: hexWidth * 1.5, yOffset: 0, color: 'yellow', styles: { lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(255, 255, 0, 0.5)', transform: true }, initialYOffset: 0, direction: 1, animate: true },
+    { xOffset: -hexWidth * 0.75, yOffset: -hexHeight * 1.5, color: 'red', styles: { lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(255, 0, 0, 0.5)', transform: false }, initialYOffset: -hexHeight * 1.5, direction: 1, animate: true },
+    { xOffset: hexWidth * 0.75, yOffset: -hexHeight * 1.5, color: 'green', styles: { lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(0, 255, 0, 0.5)', transform: false }, initialYOffset: -hexHeight * 1.5, direction: 1, animate: true },
+    { xOffset: -hexWidth * 1.5, yOffset: 0, color: 'blue', styles: { lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(0, 0, 255, 0.5)', transform: false }, initialYOffset: 0, direction: 1, animate: true },
+    { xOffset: hexWidth * 1.5, yOffset: 0, color: 'yellow', styles: { lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(255, 255, 0, 0.5)', transform: false }, initialYOffset: 0, direction: 1, animate: true },
     { xOffset: 0, yOffset: 0, color: 'purple', scale: 1.4, backgroundImage: image, styles: { lineWidth: 2, strokeStyle: 'black', transform: false }, initialYOffset: 0, direction: 1, animate: false },
-    { xOffset: -hexWidth * 0.75, yOffset: hexHeight * 1.5, color: 'cyan', styles: { lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(0, 255, 255, 0.5)', transform: true }, initialYOffset: hexHeight * 1.5, direction: 1, animate: true },
-    { xOffset: hexWidth * 0.75, yOffset: hexHeight * 1.5, color: 'magenta', styles: { lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(255, 0, 255, 0.5)', transform: true }, initialYOffset: hexHeight * 1.5, direction: 1, animate: true },
+    { xOffset: -hexWidth * 0.75, yOffset: hexHeight * 1.5, color: 'cyan', styles: { lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(0, 255, 255, 0.5)', transform: false }, initialYOffset: hexHeight * 1.5, direction: 1, animate: true },
+    { xOffset: hexWidth * 0.75, yOffset: hexHeight * 1.5, color: 'magenta', styles: { lineWidth: 2, strokeStyle: 'black', fillStyle: 'rgba(255, 0, 255, 0.5)', transform: false }, initialYOffset: hexHeight * 1.5, direction: 1, animate: true },
   ];
 
   const hexagonsWithAbsoluteCoords = hexagons.map(hex => ({
