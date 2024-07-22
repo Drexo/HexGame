@@ -69,7 +69,7 @@ html, body {
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   margin: 10px 0;
   position: absolute;
-  transition: 1s;
+  transition: 0.7s;
 }
 
 .honeycomb-cell--main {
@@ -125,15 +125,36 @@ html, body {
   transform: rotate(90deg) !important;
 }
 
+.honeycomb-close {
+  position: absolute;
+  transition: 0.4s;
+  opacity: 0;
+  right: 15px;
+  top: 15px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.honeycomb-close svg {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+}
+
 .app {
   width: 100%;
 }
 
 .active-cell {
   background: rgba(0, 0, 0, 0.5);
-  transition: 1s;
+  transition: 0.8s;
 }
 
 .app.active-cell .honeycomb-cell:not(.active) {
   opacity: 0.2;
+}
+
+.app.active-cell .honeycomb-close {
+  opacity: 1;
 }
