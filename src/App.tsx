@@ -8,32 +8,33 @@ import { useTonConnect } from "./hooks/useTonConnect";
 import "@twa-dev/sdk";
 
 const StyledApp = styled.div`
-  background-color: #000;
   color: white;
-  min-height: 100vh;
-  padding: 20px 20px;
+  min-height: 100dvh;
+  background: url('/img/bg1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
 `;
 
 const AppContainer = styled.div`
   max-width: 360px;
   margin: 0 auto;
-  background: url('src/assets/img/bg1.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 20px 15px 100px;
   position: relative;
   color: #fff;
-  overflow: hidden;
+  height: calc(100dvh - 30px);
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
 `;
 
 const honeycombData = [
   [
     { id: 'honey-1'},
-    { id: 'honey-2'},
+    { id: 'honey-2', background: 'url(/img/bg2.png)', isActive: true},
   ],
   [
     { id: 'honey-3'},
-    { id: 'honey-4', background: 'url(src/assets/img/bg1.png)', isActive: true },
+    { id: 'honey-4', background: 'url(/img/bg1.png)', isActive: true },
     { id: 'honey-5'},
   ],
   [
@@ -83,12 +84,14 @@ const App: React.FC = () => {
             </div>
           </FlexBoxRow>
         </FlexBoxCol>
-        <FlexBoxCol>
+        <FlexBoxCol className="mt-auto">
           <FlexBoxRow>
             <div className="resources-box width100 text-center">
               <h3><strong>Resources</strong></h3>
-              <div className="flex">
-                <div></div>
+              <div className="resouces-box--values">
+                <div className="resouces-box--values-single"><img src="/img/r1.png" alt="resource1" />104</div>
+                <div className="resouces-box--values-single"><img src="/img/r2.png" alt="resource2" />28</div>
+                <div className="resouces-box--values-single"><img src="/img/r3.png" alt="resource3" />10</div>
               </div>
             </div>
           </FlexBoxRow>
