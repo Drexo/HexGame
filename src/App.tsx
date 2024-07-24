@@ -85,7 +85,7 @@ const App: React.FC = () => {
   return (
     <StyledApp>
     <div className="hex-card-container" style={{ backgroundImage: overlayBackground, zIndex: overlayIndexCard, opacity: overlayOpacityCard, transform: `scale(${overlayScaleCard})`, transition: "opacity 1s, transform 1s"}}>
-      <div className="hex-card--back" onClick={resetHexCardContainer}><svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m6.5 14.68-2.56-2.56L6.5 9.56M14.18 12.12H4.01M12 20c4.42 0 8-3 8-8s-3.58-8-8-8" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div className="hex-card--back" onClick={resetHexCardContainer}><img src="./img/back.svg" alt="back" /></div>
       <div className="hex-card--main">
 
       </div>
