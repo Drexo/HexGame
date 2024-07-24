@@ -14,6 +14,7 @@ const StyledApp = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
+  position: relative;
 `;
 
 const AppContainer = styled.div`
@@ -30,7 +31,7 @@ const AppContainer = styled.div`
 const honeycombData = [
   [
     { id: 'honey-1'},
-    { id: 'honey-2', background: 'url(./img/bg2.png)', isActive: true},
+    { id: 'honey-2', background: 'url(./img/bg2.png)', isActive: true, backgroundCard: 'url(./img/bg2.png)'},
   ],
   [
     { id: 'honey-3'},
@@ -45,14 +46,62 @@ const honeycombData = [
 
 const App: React.FC = () => {
   const { network } = useTonConnect();
-
+  const [overlayBackground, setOverlayBackground] = useState("");
+  const [overlayOpacity, setOverlayOpacity] = useState(0);
+  const [overlayOpacityCard, setOverlayOpacityCard] = useState(0);
+  const [overlayScale, setOverlayScale] = useState(0);
+  const [overlayScaleCard, setOverlayScaleCard] = useState(1.4);
+  const [overlayIndex, setOverlayIndex] = useState(0);
+  const [overlayIndexCard, setOverlayIndexCard] = useState(0);
+  
   const handleCellClick = (dataAttr: string) => {
-    console.log(dataAttr);
+    const cell = honeycombData.flat().find(cell => cell.id === dataAttr);
+    if (cell?.isActive && cell.background) {
+      setOverlayBackground(cell.background);
+      setOverlayIndex(99999);
+      setOverlayIndexCard(3);
+      setOverlayOpacity(1);
+      setOverlayScale(3);
+      setTimeout(() => {
+        setOverlayOpacity(0);
+        setTimeout(() => {
+          setOverlayScale(0);
+          setOverlayIndex(0);
+        }, 1000);
+      }, 1500);
+      setTimeout(() => {
+        setOverlayOpacityCard(1);
+        setOverlayScaleCard(1);
+      }, 1000);
+    }
   };
+
+  const resetHexCardContainer = () => {
+    setOverlayOpacityCard(0);
+    setOverlayScaleCard(1.4);
+    setOverlayIndexCard(0);
+  }
 
   return (
     <StyledApp>
+    <div className="hex-card-container" style={{ backgroundImage: overlayBackground, zIndex: overlayIndexCard, opacity: overlayOpacityCard, transform: `scale(${overlayScaleCard})`, transition: "opacity 1s, transform 1s"}}>
+      <div className="hex-card--back" onClick={resetHexCardContainer}><svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m6.5 14.68-2.56-2.56L6.5 9.56M14.18 12.12H4.01M12 20c4.42 0 8-3 8-8s-3.58-8-8-8" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div className="hex-card--main">
+
+      </div>
+    </div>
       <AppContainer>
+        <div className="overlay-hex" style={{ zIndex: overlayIndex }}>
+          <div
+            className="overlay-hex--image"
+            style={{
+              opacity: overlayOpacity,
+              transform: `scale(${overlayScale})`,
+              transition: "opacity 0.6s, transform 1.5s",
+              backgroundImage: overlayBackground
+            }}
+          ></div>
+        </div>
         <FlexBoxCol>
           <FlexBoxRow>
             <TonConnectButton />
