@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { FlexBoxCol, FlexBoxRow } from "./components/styled/styled";
 import { useTonConnect } from "./hooks/useTonConnect";
 import WebApp from "@twa-dev/sdk";
+import ResourcesBox from "./components/ResourcesBox";
 
 const StyledApp = styled.div`
   color: white;
@@ -56,9 +57,6 @@ const App: React.FC = () => {
 
   useEffect(() => {
     WebApp.expand();
-    if (WebApp.isExpanded) {
-      WebApp.ready();
-    }
   }, []);
   
   const handleCellClick = (dataAttr: string) => {
@@ -91,6 +89,8 @@ const App: React.FC = () => {
 
   return (
     <StyledApp>
+    <div className="hex-start-app-overlay" style={{ backgroundImage: overlayBackground}}>
+    </div>
     <div className="hex-card-container" style={{ backgroundImage: overlayBackground, zIndex: overlayIndexCard, opacity: overlayOpacityCard, transform: `scale(${overlayScaleCard})`, transition: "opacity 1s, transform 1s"}}>
       <div className="hex-card--back" onClick={resetHexCardContainer}><img src="./img/back.svg" alt="back" /></div>
       <div className="hex-card--main">
@@ -142,14 +142,7 @@ const App: React.FC = () => {
         </FlexBoxCol>
         <FlexBoxCol className="mt-auto">
           <FlexBoxRow>
-            <div className="resources-box width100 text-center">
-              <h3><strong>Resources</strong></h3>
-              <div className="resouces-box--values">
-                <div className="resouces-box--values-single"><img src="./img/r1.png" alt="resource1" />104</div>
-                <div className="resouces-box--values-single"><img src="./img/r2.png" alt="resource2" />28</div>
-                <div className="resouces-box--values-single"><img src="./img/r3.png" alt="resource3" />10</div>
-              </div>
-            </div>
+            <ResourcesBox />
           </FlexBoxRow>
         </FlexBoxCol>
       </AppContainer>
