@@ -56,6 +56,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     WebApp.expand();
+    WebApp.ready();
   }, []);
   
   const handleCellClick = (dataAttr: string) => {
