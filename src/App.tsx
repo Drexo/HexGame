@@ -55,8 +55,19 @@ const App: React.FC = () => {
   const [overlayIndexCard, setOverlayIndexCard] = useState(0);
 
   useEffect(() => {
-    WebApp.expand();
-    WebApp.ready();
+    const handleWindowLoad = () => {
+      WebApp.ready();
+      WebApp.expand();
+    };
+
+    if (document.readyState === "complete") {
+      handleWindowLoad();
+    } else {
+      window.addEventListener('load', handleWindowLoad);
+      return () => {
+        window.removeEventListener('load', handleWindowLoad);
+      };
+    }
   }, []);
   
   const handleCellClick = (dataAttr: string) => {
