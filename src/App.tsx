@@ -5,7 +5,7 @@ import { Counter } from "./components/Counter";
 import styled from "styled-components";
 import { FlexBoxCol, FlexBoxRow } from "./components/styled/styled";
 import { useTonConnect } from "./hooks/useTonConnect";
-import { expand } from "@twa-dev/sdk";
+import WebApp from "@twa-dev/sdk";
 
 const StyledApp = styled.div`
   color: white;
@@ -55,7 +55,7 @@ const App: React.FC = () => {
   const [overlayIndexCard, setOverlayIndexCard] = useState(0);
 
   useEffect(() => {
-    expand();
+    WebApp.expand();
   }, []);
   
   const handleCellClick = (dataAttr: string) => {
