@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { TonConnectButton } from "@tonconnect/ui-react";
 import { Counter } from "./components/Counter";
 import styled from "styled-components";
 import { FlexBoxCol, FlexBoxRow } from "./components/styled/styled";
 import { useTonConnect } from "./hooks/useTonConnect";
-import "@twa-dev/sdk";
+import { expand } from "@twa-dev/sdk";
 
 const StyledApp = styled.div`
   color: white;
@@ -53,6 +53,10 @@ const App: React.FC = () => {
   const [overlayScaleCard, setOverlayScaleCard] = useState(1.4);
   const [overlayIndex, setOverlayIndex] = useState(0);
   const [overlayIndexCard, setOverlayIndexCard] = useState(0);
+
+  useEffect(() => {
+    expand();
+  }, []);
   
   const handleCellClick = (dataAttr: string) => {
     const cell = honeycombData.flat().find(cell => cell.id === dataAttr);
