@@ -55,18 +55,9 @@ const App: React.FC = () => {
   const [overlayIndexCard, setOverlayIndexCard] = useState(0);
 
   useEffect(() => {
-    const handleWindowLoad = () => {
+    WebApp.expand();
+    if (WebApp.isExpanded) {
       WebApp.ready();
-      WebApp.expand();
-    };
-
-    if (document.readyState === "complete") {
-      handleWindowLoad();
-    } else {
-      window.addEventListener('load', handleWindowLoad);
-      return () => {
-        window.removeEventListener('load', handleWindowLoad);
-      };
     }
   }, []);
   
