@@ -15,17 +15,6 @@ html, body {
   font-family: 'Jura';
 }
 
-.honeycomb {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 330px;
-  position: relative;
-  margin: 0 -140px;
-  padding: 20px 0;
-}
-
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -54,10 +43,6 @@ html, body {
   clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-.app {
-  width: 100%;
 }
 
 @keyframes smoothScale {
@@ -174,16 +159,6 @@ html, body {
   background-size: cover;
 }
 
-.hex-card-container {
-  position: absolute;
-  left: -15px;
-  top: 0;
-  right: -15px;
-  bottom: 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .hex-card--back {
   position: absolute;
   left: 30px;
@@ -196,4 +171,69 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.hex-icon-main,
+.hex-icon-lock {
+  position: relative;
+}
+
+.hex-icon-main::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: url('./img/main-hex.svg');
+}
+
+.hex-icon-lock::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: url('./img/lock.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.honey-4-1 {
+  top: 22%;
+  left: 68%;
+  transform: translate(-68%, -22%);
+}
+
+.honey-4-2 {
+  top: 50%;
+  left: 30%;
+  transform: translate(-30%, -50%);
+}
+
+.honey-4-3 {
+  top: 68%;
+  left: 70%;
+  transform: translate(-70%, -68%);
+}
+
+.honey-2-1 {
+  top: 28%;
+  left: 60%;
+  transform: translate(-60%, -28%);
+}
+
+.honey-2-2 {
+  top: 40%;
+  left: 12%;
+  transform: translate(-12%, -40%);
+}
+
+.honey-2-3 {
+  top: 75%;
+  left: 70%;
+  transform: translate(-70%, -75%);
 }
