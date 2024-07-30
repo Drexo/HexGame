@@ -67,21 +67,21 @@ const App: React.FC = () => {
   const [overlayIndexCard, setOverlayIndexCard] = useState(0);
   const [xOffset, setXOffset] = useState(0);
   const [yOffset, setYOffset] = useState(0);
+  const [backgroundPosition, setBackgroundPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     WebApp.expand();
 
-    const handleOrientation = (event: DeviceOrientationEvent) => {
-      let x = (event.beta || 0) / 10; // Front-back tilt in degrees
-      let y = (event.gamma || 0) / 10; // Left-right tilt in degrees
-
-      setXOffset(y);
-      setYOffset(x);
+    const handleDeviceOrientation = (event: DeviceOrientationEvent) => {
+      const x = event.gamma;
+      const y = event.beta;
+      setBackgroundPosition({ x: x / 10, y: y / 10 });
     };
 
-    window.addEventListener('deviceorientation', handleOrientation);
+    window.addEventListener("deviceorientation", handleDeviceOrientation);
+
     return () => {
-      window.removeEventListener('deviceorientation', handleOrientation);
+      window.removeEventListener("deviceorientation", handleDeviceOrientation);
     };
   }, []);
 
@@ -126,7 +126,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <StyledApp x={xOffset} y={yOffset}>
+    <StyledApp x={backgroundPosition.x} y={backgroundPosition.y}>
       <HexStartAppOverlay backgroundImage={overlayBackground} />
       <HexCardContainer
         backgroundImage={overlayBackground}

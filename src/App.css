@@ -178,30 +178,6 @@ html, body {
   position: relative;
 }
 
-.hex-icon-main::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  width: 40px;
-  height: 40px;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: url('./img/main-hex.svg');
-}
-
-.hex-icon-lock::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  width: 40px;
-  height: 40px;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: url('./img/lock.svg');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .honey-4-1 {
   top: 22%;
   left: 68%;

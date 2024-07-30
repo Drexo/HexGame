@@ -27,7 +27,21 @@ const HoneycombApp: React.FC<HoneycombAppProps> = ({ honeycombData, onCellClick 
       {honeycombData.map((row, rowIndex) => (
         <div className="row" key={rowIndex}>
           {row.map(cell => {
-            const style = cell.background ? { backgroundImage: cell.background } : { background: '#fff' };
+            const style = cell.background 
+              ? cell.mainHex
+                ? { 
+                    background: `url(./img/main-hex.svg), ${cell.background}`, 
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'auto, cover', 
+                    backgroundPosition: 'center'
+                  }
+                : { backgroundImage: cell.background } 
+              : { 
+                  background: 'url(./img/lock.svg), #fff',
+                  backgroundRepeat: 'no-repeat', 
+                  backgroundPosition: 'center', 
+                  backgroundSize: '40px' 
+                };
             return (
               <div
                 className={`honeycomb-cell ${cell.isActive ? 'active' : 'hex-icon-lock'} ${cell.mainHex ? 'hex-icon-main' : ''}`}
