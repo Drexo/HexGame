@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { TonConnectButton } from '@tonconnect/ui-react';
 import { Counter } from './components/Counter';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { FlexBoxCol, FlexBoxRow } from './components/styled/styled';
 import { useTonConnect } from './hooks/useTonConnect';
 import WebApp from '@twa-dev/sdk';
@@ -12,20 +12,24 @@ import HexCardContainer from './components/HexCardContainer';
 import OverlayHex from './components/OverlayHex';
 import HoneycombApp from './components/HoneycombApp';
 
-interface StyledAppProps {
-  x: number;
-  y: number;
-}
+const scrollBackground = keyframes`
+  0% {
+    background-position: 0 80px, 0 0;  // second image
+  }
+  100% {
+    background-position: 0 80px, 0 100%;  // second image
+  }
+`;
 
-const StyledApp = styled.div<StyledAppProps>`
+const StyledApp = styled.div`
   color: white;
   min-height: 100dvh;
-  background: url('./img/main-bg.png');
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: url('./img/main-bg-static.png'), url('./img/main-bg.png');
+  background-size: contain;
+  background-repeat: no-repeat, repeat-y;
   overflow: hidden;
   position: relative;
-  transform: translate(${props => props.x}px, ${props => props.y}px);
+  animation: ${scrollBackground} 15s linear infinite;
 `;
 
 const AppContainer = styled.div`
@@ -65,22 +69,9 @@ const App: React.FC = () => {
   const [overlayIndex, setOverlayIndex] = useState(0);
   const [selectedCellId, setSelectedCellId] = useState<string | null>(null);
   const [overlayIndexCard, setOverlayIndexCard] = useState(0);
-  const [backgroundPosition, setBackgroundPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     WebApp.expand();
-
-    const handleDeviceOrientation = (event: DeviceOrientationEvent) => {
-      const x = event.gamma ?? 0;
-      const y = event.beta ?? 0;
-      setBackgroundPosition({ x: x / 10, y: y / 10 });
-    };
-
-    window.addEventListener("deviceorientation", handleDeviceOrientation);
-
-    return () => {
-      window.removeEventListener("deviceorientation", handleDeviceOrientation);
-    };
   }, []);
 
   const handleCellClick = (dataAttr: string) => {
@@ -124,7 +115,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <StyledApp x={backgroundPosition.x} y={backgroundPosition.y}>
+    <StyledApp>
       <HexStartAppOverlay backgroundImage={overlayBackground} />
       <HexCardContainer
         backgroundImage={overlayBackground}
