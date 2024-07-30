@@ -15,11 +15,12 @@ import HoneycombApp from './components/HoneycombApp';
 const StyledApp = styled.div`
   color: white;
   min-height: 100dvh;
-  background: url('./img/bg1.png');
+  background: url('./img/main-bg.png');
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
   position: relative;
+  background-position: ${({ x, y }) => `${x}px ${y}px`};
 `;
 
 const AppContainer = styled.div`
@@ -59,9 +60,22 @@ const App: React.FC = () => {
   const [overlayIndex, setOverlayIndex] = useState(0);
   const [selectedCellId, setSelectedCellId] = useState<string | null>(null);
   const [overlayIndexCard, setOverlayIndexCard] = useState(0);
+  const [backgroundPosition, setBackgroundPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     WebApp.expand();
+
+    const handleDeviceOrientation = (event: DeviceOrientationEvent) => {
+      const x = event.gamma;
+      const y = event.beta;
+      setBackgroundPosition({ x: x / 10, y: y / 10 });
+    };
+
+    window.addEventListener("deviceorientation", handleDeviceOrientation);
+
+    return () => {
+      window.removeEventListener("deviceorientation", handleDeviceOrientation);
+    };
   }, []);
 
   const handleCellClick = (dataAttr: string) => {
@@ -105,7 +119,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <StyledApp>
+    <StyledApp x={backgroundPosition.x} y={backgroundPosition.y}>
       <HexStartAppOverlay backgroundImage={overlayBackground} />
       <HexCardContainer
         backgroundImage={overlayBackground}
