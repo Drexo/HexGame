@@ -12,7 +12,12 @@ import HexCardContainer from './components/HexCardContainer';
 import OverlayHex from './components/OverlayHex';
 import HoneycombApp from './components/HoneycombApp';
 
-const StyledApp = styled.div`
+interface StyledAppProps {
+  x: number;
+  y: number;
+}
+
+const StyledApp = styled.div<StyledAppProps>`
   color: white;
   min-height: 100dvh;
   background: url('./img/main-bg.png');
@@ -20,7 +25,7 @@ const StyledApp = styled.div`
   background-size: cover;
   overflow: hidden;
   position: relative;
-  background-position: ${({ x, y }) => `${x}px ${y}px`};
+  transform: translate(${props => props.x}px, ${props => props.y}px);
 `;
 
 const AppContainer = styled.div`
@@ -60,21 +65,23 @@ const App: React.FC = () => {
   const [overlayIndex, setOverlayIndex] = useState(0);
   const [selectedCellId, setSelectedCellId] = useState<string | null>(null);
   const [overlayIndexCard, setOverlayIndexCard] = useState(0);
-  const [backgroundPosition, setBackgroundPosition] = useState({ x: 0, y: 0 });
+  const [xOffset, setXOffset] = useState(0);
+  const [yOffset, setYOffset] = useState(0);
 
   useEffect(() => {
     WebApp.expand();
 
-    const handleDeviceOrientation = (event: DeviceOrientationEvent) => {
-      const x = event.gamma;
-      const y = event.beta;
-      setBackgroundPosition({ x: x / 10, y: y / 10 });
+    const handleOrientation = (event: DeviceOrientationEvent) => {
+      let x = (event.beta || 0) / 10; // Front-back tilt in degrees
+      let y = (event.gamma || 0) / 10; // Left-right tilt in degrees
+
+      setXOffset(y);
+      setYOffset(x);
     };
 
-    window.addEventListener("deviceorientation", handleDeviceOrientation);
-
+    window.addEventListener('deviceorientation', handleOrientation);
     return () => {
-      window.removeEventListener("deviceorientation", handleDeviceOrientation);
+      window.removeEventListener('deviceorientation', handleOrientation);
     };
   }, []);
 
@@ -119,7 +126,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <StyledApp x={backgroundPosition.x} y={backgroundPosition.y}>
+    <StyledApp x={xOffset} y={yOffset}>
       <HexStartAppOverlay backgroundImage={overlayBackground} />
       <HexCardContainer
         backgroundImage={overlayBackground}
