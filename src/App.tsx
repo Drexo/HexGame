@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { TonConnectButton } from '@tonconnect/ui-react';
 import { Counter } from './components/Counter';
-import styled, { keyframes } from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import { FlexBoxCol, FlexBoxRow } from './components/styled/styled';
 import { useTonConnect } from './hooks/useTonConnect';
 import WebApp from '@twa-dev/sdk';
@@ -17,7 +17,7 @@ const scrollBackground = keyframes`
     background-position: 0 80px, 0 0;  // second image
   }
   100% {
-    background-position: 0 80px, 0 100%;  // second image
+    background-position: 0 80px, 0 1000%;  // second image
   }
 `;
 
@@ -29,7 +29,7 @@ const StyledApp = styled.div`
   background-repeat: no-repeat, repeat-y;
   overflow: hidden;
   position: relative;
-  animation: ${scrollBackground} 15s linear infinite;
+  animation: ${scrollBackground} 50s linear infinite;
 `;
 
 const AppContainer = styled.div`
