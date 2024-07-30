@@ -65,16 +65,14 @@ const App: React.FC = () => {
   const [overlayIndex, setOverlayIndex] = useState(0);
   const [selectedCellId, setSelectedCellId] = useState<string | null>(null);
   const [overlayIndexCard, setOverlayIndexCard] = useState(0);
-  const [xOffset, setXOffset] = useState(0);
-  const [yOffset, setYOffset] = useState(0);
   const [backgroundPosition, setBackgroundPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     WebApp.expand();
 
     const handleDeviceOrientation = (event: DeviceOrientationEvent) => {
-      const x = event.gamma;
-      const y = event.beta;
+      const x = event.gamma ?? 0;
+      const y = event.beta ?? 0;
       setBackgroundPosition({ x: x / 10, y: y / 10 });
     };
 
