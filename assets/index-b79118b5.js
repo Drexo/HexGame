@@ -1154,7 +1154,7 @@ Values:
 `,LS=Jn.div`
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 50px;
 `;Jn.button`
   background-color: ${e=>e.disabled?"#6e6e6e":"var(--tg-theme-button-color)"};
   border: 0;
@@ -1210,10 +1210,10 @@ Values:
     padding: 20px 0;
 `,sce=({honeycombData:e,onCellClick:t})=>Vt(ace,{className:"app",children:Vt(oce,{className:"honeycomb",children:e.map((r,n)=>Vt("div",{className:"row",children:r.map(o=>{const i=o.background?o.mainHex?{background:`url(./img/main-hex.svg), ${o.background}`,backgroundRepeat:"no-repeat",backgroundSize:"auto, cover",backgroundPosition:"center"}:{backgroundImage:o.background}:{background:"url(./img/lock.svg), #fff",backgroundRepeat:"no-repeat",backgroundPosition:"center",backgroundSize:"40px"};return Vt("div",{className:`honeycomb-cell ${o.isActive?"active":"hex-icon-lock"} ${o.mainHex?"hex-icon-main":""}`,"data-attr":o.id,onClick:()=>t(o.id),children:Vt("div",{className:"honeycomb-cell--single",style:i})},o.id)})},n))})}),uce=Zfe`
   0% {
-    background-position: 0 80px, 0 0;  // second image
+    background-position: 0 0, 0 0;  // second image
   }
   100% {
-    background-position: 0 80px, 0 1000%;  // second image
+    background-position: 0 0, 0 1000%;  // second image
   }
 `,lce=Jn.div`
   color: white;
