@@ -14,10 +14,10 @@ import HoneycombApp from './components/HoneycombApp';
 
 const scrollBackground = keyframes`
   0% {
-    background-position: 0 80px, 0 0;  // second image
+    background-position: 0 0, 0 0;  // second image
   }
   100% {
-    background-position: 0 80px, 0 1000%;  // second image
+    background-position: 0 0, 0 1000%;  // second image
   }
 `;
 
