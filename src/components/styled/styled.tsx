@@ -17,11 +17,20 @@ export const FlexBoxRow = styled.div`
   align-items: center;
 `;
 
+export const FlexBoxRowBetween = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 export const FlexBoxCol = styled.div`
   display: flex;
   flex-direction: column;
   gap: 50px;
 `;
+
 
 export const Button = styled.button`
   background-color: ${(props) =>

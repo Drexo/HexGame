@@ -12,12 +12,13 @@ const CardContainer = styled.div`
 `;
 
 const BuildingSingle = styled.div<{ level?: number }>`
-  background: ${({ level }) => `url(./img/buildings/level${level || 1}.svg)`};
+  background: ${({ level }) => `url(./img/buildings/level${level || 1}.png)`};
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
   width: 116px;
   height: 80px;
+  cursor: pointer;
 `;
 
 interface HexCardContainerProps {
@@ -30,9 +31,21 @@ interface HexCardContainerProps {
   BuildingLevelThird: number;
   selectedCellId: string | null;
   onBackClick: () => void;
+  onBuildingClick: (buildingId: string) => void;
 }
 
-const HexCardContainer: React.FC<HexCardContainerProps> = ({ backgroundImage, zIndex, opacity, transformScale, selectedCellId, BuildingLevelFirst, BuildingLevelSecond, BuildingLevelThird, onBackClick }) => (
+const HexCardContainer: React.FC<HexCardContainerProps> = ({
+  backgroundImage,
+  zIndex,
+  opacity,
+  transformScale,
+  selectedCellId,
+  BuildingLevelFirst,
+  BuildingLevelSecond,
+  BuildingLevelThird,
+  onBackClick,
+  onBuildingClick,
+}) => (
   <CardContainer
     className="hex-card-container"
     style={{
@@ -48,9 +61,21 @@ const HexCardContainer: React.FC<HexCardContainerProps> = ({ backgroundImage, zI
       <img src="./img/back.svg" alt="back" />
     </div>
     <div className="hex-card--main buildings">
-      <BuildingSingle className={`building__single ${selectedCellId}-1`} level={BuildingLevelFirst}></BuildingSingle>
-      <BuildingSingle className={`building__single ${selectedCellId}-2`} level={BuildingLevelSecond}></BuildingSingle>
-      <BuildingSingle className={`building__single ${selectedCellId}-3`} level={BuildingLevelThird}></BuildingSingle>
+      <BuildingSingle
+        className={`building__single ${selectedCellId}-1`}
+        level={BuildingLevelFirst}
+        onClick={() => onBuildingClick(`${selectedCellId}-1`)}
+      ></BuildingSingle>
+      <BuildingSingle
+        className={`building__single ${selectedCellId}-2`}
+        level={BuildingLevelSecond}
+        onClick={() => onBuildingClick(`${selectedCellId}-2`)}
+      ></BuildingSingle>
+      <BuildingSingle
+        className={`building__single ${selectedCellId}-3`}
+        level={BuildingLevelThird}
+        onClick={() => onBuildingClick(`${selectedCellId}-3`)}
+      ></BuildingSingle>
     </div>
   </CardContainer>
 );

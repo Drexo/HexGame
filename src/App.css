@@ -213,3 +213,51 @@ html, body {
   left: 70%;
   transform: translate(-70%, -75%);
 }
+
+.opacity-1 {
+  opacity: 1;
+  transition: 1s;
+}
+
+.opacity-0 {
+  opacity: 0;
+  transition: 1s;
+}
+
+.main-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.terminal-btn {
+  padding: 10px;
+  border-radius: 30px;
+  background: linear-gradient(to top, rgba(135, 17, 191, 1), rgba(28, 26, 29, 1));
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.terminal-btn img {
+  margin-right: 4px;
+}
+
+.exp-btn {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 4px 16px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+}
+
+.exp-btn img {
+  margin-right: 8px;
+  margin-bottom: -2px;
+}
