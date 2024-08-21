@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { TonConnectButton } from '@tonconnect/ui-react';
-import { Counter } from './components/Counter';
+//import { TonConnectButton } from '@tonconnect/ui-react';
+//import { Counter } from './components/Counter';
 import styled, { keyframes } from 'styled-components';
-import { FlexBoxCol, FlexBoxRow } from './components/styled/styled';
 import { useTonConnect } from './hooks/useTonConnect';
 import WebApp from '@twa-dev/sdk';
-import ResourcesBox from './components/ResourcesBox';
 import HeaderCTA from './components/HeaderCTA';
 import HexStartAppOverlay from './components/HexStartAppOverlay';
 import HexCardContainer from './components/HexCardContainer';
 import OverlayHex from './components/OverlayHex';
 import HoneycombApp from './components/HoneycombApp';
 import BuildingModal from './components/BuildingModal';
+import ResourcesBox from './components/ResourcesBox';
 
 const scrollBackground = keyframes`
   from {
