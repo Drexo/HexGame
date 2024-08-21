@@ -12,7 +12,7 @@ import HexStartAppOverlay from './components/HexStartAppOverlay';
 import HexCardContainer from './components/HexCardContainer';
 import OverlayHex from './components/OverlayHex';
 import HoneycombApp from './components/HoneycombApp';
-//import BuildingModal from './components/BuildingModal';
+import BuildingModal from './components/BuildingModal';
 
 const scrollBackground = keyframes`
   from {
@@ -168,7 +168,7 @@ const App: React.FC = () => {
         <HoneycombApp honeycombData={honeycombData} onCellClick={handleCellClick} />
         <ResourcesBox />
       </AppContainer>
-      {/* <BuildingModal isVisible={isModalVisible} content={modalContent} onClose={closeModal} /> */}
+      <BuildingModal isVisible={isModalVisible} content={modalContent} onClose={closeModal} />
     </StyledApp>
   );
 };
