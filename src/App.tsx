@@ -16,24 +16,14 @@ import ResourcesBox from './components/ResourcesBox';
 WebApp.ready();
 WebApp.expand();
 
-const scrollBackground = keyframes`
-  from {
-    background-position: 0 0, 0 0;
-  }
-  to {
-    background-position: 0 0, 0 1000%;
-  }
-`;
-
 const StyledApp = styled.div`
   color: white;
   min-height: 100dvh;
   background: url('./img/main-bg-static.png'), url('./img/main-bg.png');
-  background-size: contain, auto 90%;
-  background-repeat: no-repeat, repeat-y;
+  background-size: contain, cover;
+  background-repeat: no-repeat;
   overflow: hidden;
   position: relative;
-  animation: ${scrollBackground} 20s linear infinite;
   -webkit-tap-highlight-color: transparent;
 `;
 
@@ -42,11 +32,11 @@ const AppContainer = styled.div`
   margin: 0 auto;
   position: relative;
   color: #fff;
-  height: calc(100dvh - 30px);
+  height: calc(100dvh - 45px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 15px;
+  padding: 15px 15px 30px;
 `;
 
 const honeycombData = [

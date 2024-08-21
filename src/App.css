@@ -58,9 +58,8 @@ html, body {
 }
 
 .app .honeycomb-cell:not(.active) {
-  opacity: 0.5;
-  scale: 0.92;
-  animation: smoothScale 3.5s infinite ease-in-out;
+  opacity: 1;
+  animation: smoothScale 4s infinite ease-in-out;
   pointer-events: none;
 }
 

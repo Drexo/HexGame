@@ -43,7 +43,7 @@ const HoneycombApp: React.FC<HoneycombAppProps> = ({ honeycombData, onCellClick 
                       }
                     : { backgroundImage: cell.background } 
                   : { 
-                      background: 'url(./img/lock.svg), #fff',
+                      background: 'url(./img/lock.svg), rgba(122, 122, 122, 0.2)',
                       backgroundRepeat: 'no-repeat', 
                       backgroundPosition: 'center', 
                       backgroundSize: '40px' 
