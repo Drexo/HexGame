@@ -13,6 +13,9 @@ import HoneycombApp from './components/HoneycombApp';
 import BuildingModal from './components/BuildingModal';
 import ResourcesBox from './components/ResourcesBox';
 
+WebApp.ready();
+WebApp.expand();
+
 const scrollBackground = keyframes`
   from {
     background-position: 0 0, 0 0;
@@ -35,17 +38,15 @@ const StyledApp = styled.div`
 `;
 
 const AppContainer = styled.div`
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 30px;
-  bottom: 45px;
   max-width: 360px;
   margin: 0 auto;
+  position: relative;
   color: #fff;
+  height: calc(100dvh - 30px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 15px;
 `;
 
 const honeycombData = [
@@ -79,19 +80,14 @@ const App: React.FC = () => {
 
   const [showCenteredImage, setShowCenteredImage] = useState(true);
   const [showContent, setShowContent] = useState(true);
-  const [showResourcesBox, setShowResourcesBox] = useState(false);
 
   useEffect(() => {
-    WebApp.expand();
     setTimeout(() => {
       setShowContent(false);
     }, 2000);
     setTimeout(() => {
       setShowCenteredImage(false);
     }, 1500);
-    setTimeout(() => {
-      setShowResourcesBox(true);
-    }, 3000);
   }, []);
 
   const handleCellClick = (dataAttr: string) => {
@@ -172,7 +168,7 @@ const App: React.FC = () => {
       <AppContainer className={`${!showContent ? 'opacity-1' : 'opacity-0'}`}>
         <HeaderCTA />
         <HoneycombApp honeycombData={honeycombData} onCellClick={handleCellClick} />
-        {showResourcesBox && <ResourcesBox />}
+        <ResourcesBox />
       </AppContainer>
       <BuildingModal isVisible={isModalVisible} content={modalContent} onClose={closeModal} />
     </StyledApp>
