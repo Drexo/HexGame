@@ -79,6 +79,7 @@ const App: React.FC = () => {
 
   const [showCenteredImage, setShowCenteredImage] = useState(true);
   const [showContent, setShowContent] = useState(true);
+  const [showResourcesBox, setShowResourcesBox] = useState(false);
 
   useEffect(() => {
     WebApp.expand();
@@ -88,6 +89,9 @@ const App: React.FC = () => {
     setTimeout(() => {
       setShowCenteredImage(false);
     }, 1500);
+    setTimeout(() => {
+      setShowResourcesBox(true);
+    }, 3000);
   }, []);
 
   const handleCellClick = (dataAttr: string) => {
@@ -168,7 +172,7 @@ const App: React.FC = () => {
       <AppContainer className={`${!showContent ? 'opacity-1' : 'opacity-0'}`}>
         <HeaderCTA />
         <HoneycombApp honeycombData={honeycombData} onCellClick={handleCellClick} />
-        <ResourcesBox />
+        {showResourcesBox && <ResourcesBox />}
       </AppContainer>
       <BuildingModal isVisible={isModalVisible} content={modalContent} onClose={closeModal} />
     </StyledApp>
