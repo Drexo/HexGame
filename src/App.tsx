@@ -79,6 +79,7 @@ const App: React.FC = () => {
   const [showContent, setShowContent] = useState(true);
 
   useEffect(() => {
+    WebApp.ready();
     WebApp.expand();
     setTimeout(() => {
       setShowContent(false);
