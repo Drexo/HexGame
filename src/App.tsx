@@ -43,6 +43,7 @@ const AppContainer = styled.div`
   height: calc(100dvh - 30px);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 15px;
 `;
 

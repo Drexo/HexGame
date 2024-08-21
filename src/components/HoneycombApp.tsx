@@ -26,7 +26,7 @@ interface HoneycombAppProps {
 }
 
 const HoneycombApp: React.FC<HoneycombAppProps> = ({ honeycombData, onCellClick }) => (
-  <FlexBoxCol className="mt-auto">
+  <FlexBoxCol>
     <FlexBoxRow>
       <GridWrapper className="app">
         <HoneycombWrapper className="honeycomb">

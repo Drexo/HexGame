@@ -6,7 +6,7 @@ import {
 
 const ResourcesBox: React.FC = () => {
   return (
-    <FlexBoxCol className="mt-auto">
+    <FlexBoxCol>
       <FlexBoxRow>
         <div className="resources-box width100 text-center">
           <h3><strong>Resources</strong></h3>
