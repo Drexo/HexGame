@@ -12,22 +12,26 @@ import HexStartAppOverlay from './components/HexStartAppOverlay';
 import HexCardContainer from './components/HexCardContainer';
 import OverlayHex from './components/OverlayHex';
 import HoneycombApp from './components/HoneycombApp';
-import BuildingModal from './components/BuildingModal';
+//import BuildingModal from './components/BuildingModal';
 
 const scrollBackground = keyframes`
-  0% { background-position: 0 0, 0 0; }
-  100% { background-position: 0 0, 0 1000%; }
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 0 0, 0 1000%;
+  }
 `;
 
 const StyledApp = styled.div`
   color: white;
   min-height: 100dvh;
   background: url('./img/main-bg-static.png'), url('./img/main-bg.png');
-  background-size: contain;
+  background-size: contain, auto 90%;
   background-repeat: no-repeat, repeat-y;
   overflow: hidden;
   position: relative;
-  animation: ${scrollBackground} 50s linear infinite;
+  animation: ${scrollBackground} 20s linear infinite;
   -webkit-tap-highlight-color: transparent;
 `;
 
@@ -164,7 +168,7 @@ const App: React.FC = () => {
         <HoneycombApp honeycombData={honeycombData} onCellClick={handleCellClick} />
         <ResourcesBox />
       </AppContainer>
-      <BuildingModal isVisible={isModalVisible} content={modalContent} onClose={closeModal} />
+      {/* <BuildingModal isVisible={isModalVisible} content={modalContent} onClose={closeModal} /> */}
     </StyledApp>
   );
 };
