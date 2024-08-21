@@ -165,8 +165,8 @@ const App: React.FC = () => {
       />
       <AppContainer className={`${!showContent ? 'opacity-1' : 'opacity-0'}`}>
         <HeaderCTA />
-        <HoneycombApp honeycombData={honeycombData} onCellClick={handleCellClick} />
         <ResourcesBox />
+        <HoneycombApp honeycombData={honeycombData} onCellClick={handleCellClick} />
       </AppContainer>
       <BuildingModal isVisible={isModalVisible} content={modalContent} onClose={closeModal} />
     </StyledApp>
