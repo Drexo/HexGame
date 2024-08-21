@@ -35,15 +35,17 @@ const StyledApp = styled.div`
 `;
 
 const AppContainer = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 30px;
+  bottom: 45px;
   max-width: 360px;
   margin: 0 auto;
-  position: relative;
   color: #fff;
-  height: calc(100dvh - 30px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 15px;
 `;
 
 const honeycombData = [
@@ -79,6 +81,7 @@ const App: React.FC = () => {
   const [showContent, setShowContent] = useState(true);
 
   useEffect(() => {
+    WebApp.expand();
     setTimeout(() => {
       setShowContent(false);
     }, 2000);
@@ -164,8 +167,8 @@ const App: React.FC = () => {
       />
       <AppContainer className={`${!showContent ? 'opacity-1' : 'opacity-0'}`}>
         <HeaderCTA />
-        <ResourcesBox />
         <HoneycombApp honeycombData={honeycombData} onCellClick={handleCellClick} />
+        <ResourcesBox />
       </AppContainer>
       <BuildingModal isVisible={isModalVisible} content={modalContent} onClose={closeModal} />
     </StyledApp>
