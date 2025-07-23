@@ -15,6 +15,7 @@ import ResourcesBox from './components/ResourcesBox';
 
 WebApp.ready();
 WebApp.expand();
+console.log(WebApp.initData);
 
 const StyledApp = styled.div`
   color: white;
@@ -32,7 +33,7 @@ const AppContainer = styled.div`
   margin: 0 auto;
   position: relative;
   color: #fff;
-  height: calc(100dvh - 45px);
+  height: calc(100dvh - 46px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
